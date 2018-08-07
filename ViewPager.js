@@ -40,6 +40,7 @@ var ViewPager = createReactClass({
     isLoop: PropTypes.bool,
     locked: PropTypes.bool,
     autoPlay: PropTypes.bool,
+    duration: PropTypes.number,
     animation: PropTypes.func,
     initialPage: PropTypes.number,
   },
@@ -49,6 +50,7 @@ var ViewPager = createReactClass({
   getDefaultProps() {
     return {
       isLoop: false,
+        duration: 5000,
       locked: false,
       animation: function(animate, toValue, gs) {
         return Animated.spring(animate,
@@ -163,7 +165,7 @@ var ViewPager = createReactClass({
     if (!this._autoPlayer) {
       this._autoPlayer = this.setInterval(
         () => {this.movePage(1);},
-        5000
+        this.props.duration
       );
     }
   },
